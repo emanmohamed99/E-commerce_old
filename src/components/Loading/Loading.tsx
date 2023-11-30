@@ -1,7 +1,7 @@
 import React from "react";
 type Loadingtypes={
     loading:boolean,
-    error:any,
+    error:string | null,
     children:any
 }
 const Loading = ({ loading, error, children }:Loadingtypes) => {

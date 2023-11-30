@@ -13,7 +13,7 @@ const Card = ({ categories }: categoryType) => {
   return (
     <div>
       <div className={Style.cardParent}>
-        {Object.values(categories).map((category: any) => (
+        {Object.values(categories).map((category: category) => (
           <div onClick={() => navigate(`${category.prefix}`)} key={category.id}>
             <div className={Style.card}>
               <div className={Style.imageWrapper}>

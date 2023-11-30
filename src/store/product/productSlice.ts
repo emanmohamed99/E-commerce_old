@@ -12,7 +12,7 @@ const itemsSlice = createSlice({
     receivedProducts(state, action: PayloadAction<Product[]>) {
       const products = action.payload;
 
-      products.forEach((product) => {
+      products.forEach((product:any) => {
         state.products[product.id] = product;
       });
     },

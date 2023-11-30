@@ -8,11 +8,10 @@ import { removeFromCart, updateQuantity } from "../../store/cart/cartSlice";
 import { checkoutCart } from "../../store/thunk/thunk";
 import { product } from "../../store/product/types";
 
-
 type GridListType = {
   products: { [id: string]: product };
   items: { [id: string]: number };
-  totalPrice: any;
+  totalPrice: string;
   checkoutState: "LOADING" | "READY" | "ERROR";
   errorMessage: string;
 };
@@ -31,7 +30,7 @@ const GridList = ({
     dispatch(checkoutCart());
   }
   function onQuantityChanged(
-    e: React.FocusEvent<HTMLInputElement>,
+    e:React.ChangeEvent<HTMLSelectElement>,
     id: string
   ) {
     const quantity = Number(e.target.value) || 0;
@@ -66,7 +65,7 @@ const GridList = ({
                     name="numbers"
                     className={styles.input}
                     defaultValue={quantity}
-                    onChange={(e: any) => onQuantityChanged(e, id)}
+                    onChange={(e) => onQuantityChanged(e, id)}
                   >
                     <option value="1">1</option>
                     <option value="2">2</option>

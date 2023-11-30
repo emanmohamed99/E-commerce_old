@@ -19,7 +19,7 @@ const CardProduct = ({ products }: productType) => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (name) {
-      const newItem = Object.values(products).filter((product: any) => {
+      const newItem = Object.values(products).filter((product: product) => {
         return product.cat_prefix === name;
       });
       setFiltered(newItem);

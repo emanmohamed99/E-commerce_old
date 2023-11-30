@@ -6,7 +6,7 @@ export interface CartState {
   checkoutState: CheckoutState;
   errorMessage: string;
   loading: boolean;
-  error: null | string | any;
+  error: null | string ;
 }
 export const initialStateCart: CartState = {
   items: {},
