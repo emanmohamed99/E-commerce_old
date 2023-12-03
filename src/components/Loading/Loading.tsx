@@ -2,7 +2,7 @@ import React from "react";
 type Loadingtypes={
     loading:boolean,
     error:string | null,
-    children:any
+    children: JSX.Element 
 }
 const Loading = ({ loading, error, children }:Loadingtypes) => {
   const elementType = children?.type?.render?.displayName;
