@@ -12,6 +12,7 @@ const Category = () => {
 
   useEffect(() => {
     getProducts().then((products) => {
+
       dispatch(receivedCategory(products.category));
     });
   }, [dispatch]);
