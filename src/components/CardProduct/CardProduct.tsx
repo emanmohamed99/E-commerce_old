@@ -13,18 +13,19 @@ export type productType = {
 const CardProduct = ({ products }: productType) => {
   const { name } = useParams();
 
-  const data = Object.values(products);
-  const [filteredData, setFiltered] = useState(data);
+
+  const [filteredData, setFiltered] = useState(Object.values(products));
 
   const dispatch = useAppDispatch();
   useEffect(() => {
+
     if (name) {
       const newItem = Object.values(products).filter((product: product) => {
         return product.cat_prefix === name;
       });
       setFiltered(newItem);
-    } else if (data.length > 0 && !name) {
-      setFiltered(data);
+    } else if (Object.values(products).length > 0 && !name) {
+      setFiltered(Object.values(products));
     }
   }, [name, products]);
 
