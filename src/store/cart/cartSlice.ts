@@ -4,7 +4,7 @@ import type { RootState } from "../index";
 import { checkoutCart } from "../thunk/thunk";
 
 import { initialStateCart } from "./intialState";
-import { product } from "../product/types";
+import { product } from '../product/types';
 
 const cartSlice = createSlice({
   name: "cart",
@@ -85,11 +85,11 @@ export const getMemoizedNumItems = createSelector(
 );
 export const getTotalPrice = createSelector(
   (state: RootState) => state.cart.items,
-  (state: any) => state.products.products,
-  (items, products) => {
+  (state: RootState) => state.products.products,
+  (items, products ) => {
     let total = 0;
     for (let id in items) {
-      total += products[id].price * items[id];
+      total += parseInt(products[id].price) * items[id];
     }
     return total.toFixed(2);
   }
