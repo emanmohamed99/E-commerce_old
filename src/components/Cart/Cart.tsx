@@ -2,13 +2,12 @@ import { useAppDispatch } from "../../Hooks/hooks";
 
 import classNames from "classnames";
 
-import styles from "./GridList.module.css";
+import styles from "./Cart.module.css";
 
-import { removeFromCart, updateQuantity } from "../../store/cart/cartSlice";
-import { checkoutCart } from "../../store/thunk/thunk";
+import { checkoutCart, removeFromCart, updateQuantity } from "../../store/cart/cartSlice";
 import { product } from "../../store/product/types";
 
-type GridListType = {
+type CartType = {
   products: { [id: string]: product };
   items: { [id: string]: number };
   totalPrice: string;
@@ -16,13 +15,13 @@ type GridListType = {
   errorMessage: string;
 };
 
-const GridList = ({
+const Cart = ({
   items,
   products,
   totalPrice,
   checkoutState,
   errorMessage,
-}: GridListType) => {
+}: CartType) => {
   const dispatch = useAppDispatch();
 
   function onCheckout(e: React.FormEvent<HTMLFormElement>) {
@@ -70,9 +69,7 @@ const GridList = ({
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="4">5</option>
-                    <option value="4">6</option>
+                  
                   </select>
                 </td>
                 <td>${products[id].price}</td>
@@ -109,4 +106,4 @@ const GridList = ({
   );
 };
 
-export default GridList;
+export default Cart;

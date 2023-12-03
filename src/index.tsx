@@ -8,7 +8,7 @@ import store from './store';
 import ErrorPage from './pages/ErrorPage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './pages/RootLayout';
-import Index from './pages/Index';
+
 
 
 const ShoppingCard = React.lazy(() => import("./pages/cart"));
@@ -21,13 +21,17 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Index /> },
-      { path: "main", element: <Index /> },
+      { index: true, element: <Suspense fallback="loading please wait...">
+      <ProductPage />
+    </Suspense> },
+      { path: "main", element:  <Suspense fallback="loading please wait...">
+      <ProductPage />
+    </Suspense> },
       {
         path: "main/category",
         element: (
           <Suspense fallback="loading please wait...">
-            <CategoryPage />
+          <CategoryPage/>
           </Suspense>
         ),
       },
@@ -39,14 +43,7 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
-        path: "main/products",
-        element: (
-          <Suspense fallback="loading please wait...">
-            <ProductPage />
-          </Suspense>
-        ),
-      },
+   
       {
         path: "main/shoppingCard",
         element: (

@@ -1,11 +1,21 @@
-import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createSelector, createAsyncThunk } from "@reduxjs/toolkit";
 import type { RootState } from "../index";
 
-import { checkoutCart } from "../thunk/thunk";
+
 
 import { initialStateCart } from "./intialState";
 import { product } from '../product/types';
-
+import { checkout } from "../../App/api";
+export const checkoutCart = createAsyncThunk(
+  "cart/checkout",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    const items = state.cart.items;
+    console.log(items);
+    const response = await checkout(items);
+    return response;
+  }
+);
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialStateCart,

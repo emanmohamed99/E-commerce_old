@@ -1,26 +1,31 @@
 import React, { useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../Hooks/hooks";
-import { receivedCategory } from "../store/category/categorySlice";
-import CardCategory from "../components/CardCategory/CardCategory";
-import { getProducts } from "../App/api";
+
+import { fetchCategories } from '../store/category/categorySlice';
+import { GridList } from "../components/Layout";
+
+import Card from "../components/CardCategory/CardCategory";
+import { category } from "../store/category/types";
+
 
 const Category = () => {
   const dispatch = useAppDispatch();
 
-  const { categories } = useAppSelector((state) => state.category);
+  const { categories,loading,error } = useAppSelector((state) => state.category);
 
   useEffect(() => {
-    getProducts().then((products) => {
 
-      dispatch(receivedCategory(products.category));
-    });
+    dispatch(fetchCategories());
   }, [dispatch]);
+  const categoriesData=Object.values(categories);
+
 
   return (
-    <div>
-      <CardCategory categories={categories} />
+  <div className="d-flex">
+    <GridList data={categoriesData} loading={loading} error={error} renderChild={(records:category)=>(<Card key={records.id} {...records}/>)}/>
     </div>
+
   );
 };
 

@@ -1,53 +1,48 @@
 import style from "./CardProduct.module.css";
-import { useParams } from "react-router-dom";
+
 import { useAppDispatch } from "../../Hooks/hooks";
-import { useEffect, useState } from "react";
+
 
 import { addToCart } from "../../store/cart/cartSlice";
-import { product } from "../../store/product/types";
 
 
-export type productType = {
-  products: { [id: string]: product };
-};
-const CardProduct = ({ products }: productType) => {
-  const { name } = useParams();
+type productType={
+  id: number;
+  title: string;
+  price: string;
+  cat_prefix: string;
+  img: string;
+  max_quantity: number;
+}
 
 
-  const [filteredData, setFiltered] = useState(Object.values(products));
+const CardProduct = ({id, 
+  title,
+  price,
+  cat_prefix,
+  img,
+  max_quantity}:productType) => {
 
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-
-    if (name) {
-      const newItem = Object.values(products).filter((product: product) => {
-        return product.cat_prefix === name;
-      });
-      setFiltered(newItem);
-    } else if (Object.values(products).length > 0 && !name) {
-      setFiltered(Object.values(products));
-    }
-  }, [name, products]);
-
+const dispatch=useAppDispatch()
   return (
-    <div>
-      <div className={style.cardParent}>
-        {filteredData.map((product: product) => (
-          <div key={product.id}>
+  
+   
+       
+          <div >
             <div className={style.card}>
-              <img src={product.img} alt={product.title} />
-              <h2>{product.title}</h2>
-              <p className={style.price}>{product.price}</p>
+              <img src={img} alt={title} />
+              <h2>{title}</h2>
+              <p className={style.price}>{price}</p>
               <p>
-                <button onClick={() => dispatch(addToCart(product))}>
+                <button onClick={() => dispatch(addToCart({ id,title, price, cat_prefix, img, max_quantity}))}>
                   Add to Cart
                 </button>
               </p>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
+       
+      
+ 
   );
 };
 

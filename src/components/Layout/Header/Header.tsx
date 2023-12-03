@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
-import { useAppSelector } from "../../Hooks/hooks";
-import { getMemoizedNumItems } from "../../store/cart/cartSlice";
+import { useAppSelector } from "../../../Hooks/hooks";
+import { getMemoizedNumItems } from "../../../store/cart/cartSlice";
 const Header = () => {
   const numItems = useAppSelector(getMemoizedNumItems);
   return (
@@ -15,9 +15,7 @@ const Header = () => {
         <li>
           <NavLink to="/main/category">category</NavLink>
         </li>
-        <li>
-          <NavLink to="/main/products">product</NavLink>
-        </li>
+
         <li className={styles.shoppingIcon}>
           <NavLink to="/main/shoppingCard">
             🛒&nbsp;&nbsp;{numItems ? numItems : "Cart"}

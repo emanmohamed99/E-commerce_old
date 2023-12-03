@@ -1,6 +1,6 @@
 import { useAppSelector } from "../Hooks/hooks";
 
-import GridList from "../components/GridList/GridList";
+import Cart from "../components/Cart/Cart";
 import Loading from "../components/Loading/Loading";
 
 import { getTotalPrice } from "../store/cart/cartSlice";
@@ -16,7 +16,7 @@ const ShoppingCard = () => {
   return (
     <div>
       <Loading loading={loading} error={error}>
-        <GridList
+        <Cart
           items={items}
           products={products}
           totalPrice={totalPrice}
